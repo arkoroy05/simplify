@@ -52,7 +52,7 @@ export default function Component() {
       className="flex items-center flex-col justify-center px-2 md:px-10 py-4 w-full h-full"
       >
       
-      <Loader loadingStates={loadingStates} loading={loading} duration={1000} />
+      <Loader loadingStates={loadingStates} loading={loading} duration={700} />
   
       <TypingAnimation className="text-8xl font-bold mb-8 bg-gradient-to-tr" text="simplyfy"></TypingAnimation>
       

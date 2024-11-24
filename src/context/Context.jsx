@@ -33,7 +33,7 @@ const ContextProvider=(props)=>{
         setTimeout(() => {
           setLoading(false); 
           router.push('/explain'); 
-        }, loadingStates.length * 1000); 
+        }, loadingStates.length * 700); 
       };
 
       const onSent = (input, sliderValue) => {
