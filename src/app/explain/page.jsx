@@ -6,12 +6,12 @@ import React, { useContext, useState,useEffect } from 'react'
 import { WobbleCard } from '@/components/ui/wobble-card';
 import TextBorderAnimation from '@/components/ui/text-border-animation';
 import QuestionAnswer from '@/components/QnA';
+import { TextHoverEffect } from '@/components/ui/hover-text';
+import { Footer } from '@/components/Footer';
 
 export default function Page() {
   const { resultData,ntData } = useContext(Context);
   
- 
-
   return (
   
     <div className='w-full min-h-screen bg-black'>
@@ -37,11 +37,16 @@ export default function Page() {
           {ntData}
         </p>
       </WobbleCard>
-      <TextBorderAnimation text='simplyfy further'></TextBorderAnimation> 
+      
     </div>
+    <div>
+
     <QuestionAnswer></QuestionAnswer>
-
-
+    </div>
+    <div className="h-[40rem] flex items-center justify-center sm:mt-10 p-10">
+      <TextHoverEffect text="simplyfy" />
+    </div>
+    <Footer></Footer>
     </div>
    
   );
