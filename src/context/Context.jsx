@@ -36,12 +36,30 @@ const ContextProvider=(props)=>{
         }, loadingStates.length * 700); 
       };
 
+      function cleanAndParseJSON(inputString) {
+        // Remove all occurrences of opening and closing triple backticks
+        const cleanedString = inputString.replace(/```json/gi, '').replace(/```/gi, '').trim();
+        
+        try {
+            // Parse the cleaned string as JSON
+            return JSON.parse(cleanedString);
+        } catch (error) {
+            // Return an error message if parsing fails
+            console.error("Invalid JSON:", error.message);
+            return null;
+        }
+    }
+    
+    
+
       const onSent = (input, sliderValue) => {
         setResultData("");
-        
         generateAnswer(input, sliderValue)
             .then((response) => {
-                setResultData(response);
+                const formated=cleanAndParseJSON(response)
+                console.log(typeof(formated))
+                console.log(formated)
+                setResultData(formated);
                 return generateNutshell(response);
             })
             .then((nutshell) => {

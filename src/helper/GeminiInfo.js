@@ -13,6 +13,7 @@ export default async function generateAnswer(query,slider) {
                   1. Return the answer in just one paragraph, do not use multiple paragraphs, Make this paragraph moderately long and detailed.
                   2.Any new term you introduce make sure to explain it in atleast one line.
                   3.Do not ask any return question or inform the user that you are done explaining
+                  4. Return the data in JSON format
                   `;
     }
     
