@@ -1,6 +1,5 @@
 "use client"
 import generateAnswer from "@/helper/GeminiInfo";
-import generateNutshell from "@/helper/GeminiNutshell";
 import { createContext, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -24,7 +23,6 @@ const ContextProvider=(props)=>{
     const [sliderValue, setSliderValue] = useState(1)
     const [recentPrompt,setRecentPrompt]=useState("")
     const [resultData,setResultData]=useState("")
-    const [ntData,setNtData]=useState("")
     const [loading, setLoading] = useState(false);
     
     const handleButtonClick = (input,sliderValue) => {
@@ -35,11 +33,9 @@ const ContextProvider=(props)=>{
           router.push('/explain'); 
         }, loadingStates.length * 700); 
       };
-
+      //function takes in the string from gemini and returns an object
       function cleanAndParseJSON(inputString) {
-        // Remove all occurrences of opening and closing triple backticks
         const cleanedString = inputString.replace(/```json/gi, '').replace(/```/gi, '').trim();
-        
         try {
             // Parse the cleaned string as JSON
             return JSON.parse(cleanedString);
@@ -51,20 +47,14 @@ const ContextProvider=(props)=>{
     }
     
     
-
+    //this fuction completely handles data from input to getting object back
       const onSent = (input, sliderValue) => {
         setResultData("");
         generateAnswer(input, sliderValue)
             .then((response) => {
                 const formated=cleanAndParseJSON(response)
-                console.log(typeof(formated))
                 console.log(formated)
-                setResultData(formated);
-                return generateNutshell(response);
-            })
-            .then((nutshell) => {
-                setNtData(nutshell);
-                setInput("");
+                setResultData(formated); // you are now storing an object in resultData
             })
             .catch((error) => {
                 console.error("Error:", error);
@@ -85,7 +75,6 @@ const ContextProvider=(props)=>{
         setSliderValue,
         handleButtonClick,
         loading,
-        ntData,setNtData,
         setLoading
     }
 
