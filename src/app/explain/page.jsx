@@ -2,15 +2,10 @@
 
 import { Context } from "@/context/Context";
 import React, { useContext } from "react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
 import QuestionAnswer from "@/components/QnA";
 import { TextHoverEffect } from "@/components/ui/hover-text";
 import { Footer } from "@/components/Footer";
+import FaqSection from "@/components/ui/faq";
 
 export default function Page() {
   const { resultData, ntData } = useContext(Context);
@@ -18,15 +13,9 @@ export default function Page() {
 
   return (
     <div className="w-full min-h-screen bg-black">
-      <div className="grid grid-cols-2 grid-rows-1 gap-4 max-w-7xl mx-auto w-full">
-  {Object.entries(data).map(([key, value], index) => (
-    <Accordion key={index} type="single" collapsible>
-      <AccordionItem value={`item-${index}`}>
-        <AccordionTrigger className="text-white">{key}</AccordionTrigger>
-        <AccordionContent className="text-white">{value}</AccordionContent>
-      </AccordionItem>
-    </Accordion>
-  ))}
+      <div className="grid sm:grid-cols-2 grid-rows-1 gap-4 max-w-7xl mx-auto w-full">
+    <FaqSection data={data}></FaqSection>
+ 
 </div>
 
    
